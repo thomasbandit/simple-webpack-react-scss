@@ -1,0 +1,17 @@
+@import '../../node_modules/normalize.css/normalize';
+
+body {
+  color: #DADADA;
+  font-size: 2em;
+}
+
+.container {
+  margin: 160px 40px 0;
+
+  h1 {
+    margin-bottom: 0;
+  }
+  h3 {
+    margin-top: 0;
+  }
+}
