@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/main.scss"],"names":[],"mappings":"AAAA;AACA,sBAAsB;AACtB;AACA;AACA;AACA,+BAA+B","file":"0.css","sourcesContent":["body {\n  background: #88a9f9; }\n  body h1:hover {\n    cursor: -webkit-grab;\n    cursor: grab;\n    text-decoration: underline; }\n"],"sourceRoot":""}
