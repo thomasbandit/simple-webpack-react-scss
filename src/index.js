@@ -1,7 +1,19 @@
-import styles from './main.scss';
 import React from 'react';
-import { render } from 'react-dom'
+import { render } from 'react-dom';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import styles from './main.scss';
+
+const Child = ({ match }) => (
+  <div>
+    <h3>ID: {match.params.id}</h3>
+  </div>
+);
+
+const ComponentWithRegex = ({ match }) => (
+  <div>
+    <h3>Only asc/desc are allowed: {match.params.direction}</h3>
+  </div>
+);
 
 const container = () => (
   <BrowserRouter>
@@ -38,25 +50,13 @@ const container = () => (
   </BrowserRouter>
 );
 
-const Child = ({ match }) => (
-  <div>
-    <h3>ID: {match.params.id}</h3>
-  </div>
-);
-
-const ComponentWithRegex = ({ match }) => (
-  <div>
-    <h3>Only asc/desc are allowed: {match.params.direction}</h3>
-  </div>
-);
-
 const el = document.getElementById('app');
 
 if (el) {
-  console.log("Going to render!");
+  console.log('Going to render!');
 
   render(
-    container(), 
-    el
+    container(),
+    el,
   );
 }

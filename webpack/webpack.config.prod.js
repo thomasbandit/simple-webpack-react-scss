@@ -12,7 +12,10 @@ var config = {
       {
         test: /\.js?/,
         exclude: /node_modules/,
-        loaders: 'babel-loader',
+        use: [
+          'babel-loader',
+          'eslint-loader',
+        ]
       },
       {
         test: /\.html$/,
