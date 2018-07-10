@@ -7,16 +7,11 @@ var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var config = {
   mode: 'production',
   entry: './src/index.js',
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
-      {
-        test: /\.js?/,
-        exclude: /node_modules/,
-        use: [
-          'babel-loader',
-          'eslint-loader',
-        ]
-      },
       {
         test: /\.html$/,
         use: [
@@ -24,6 +19,14 @@ var config = {
             loader: 'html-loader',
             options: { minimize: true }
           }
+        ]
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+          'eslint-loader',
         ]
       },
       {

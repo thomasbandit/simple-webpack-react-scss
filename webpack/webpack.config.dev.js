@@ -7,6 +7,9 @@ var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var config = {
   mode: 'development',
   entry: './src/index.js',
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {
@@ -14,7 +17,7 @@ var config = {
         loaders: 'html-loader'
       },
       {
-        test: /\.js?/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loaders: 'babel-loader',
       },
@@ -44,6 +47,12 @@ var config = {
         sourceMap: true
       })
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
+  },
+  output: {
+    publicPath: '/'
   },
   plugins: [
     new HtmlWebPackPlugin({
