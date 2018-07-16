@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './About.scss';
 
 const About = () => (
-  <div className="container-fluid mt-4 mb-5">
+  <div className="about__container container-fluid mt-4 mb-5">
     <div className="row">
       <div className="col-sm-10 offset-sm-1">
         <h3 className="mb-3">About</h3>

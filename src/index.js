@@ -1,5 +1,6 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
@@ -12,12 +13,28 @@ const store = configureStore(history);
 
 /* eslint-disable */
 if (el) {
-  render(
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <App />
-      </ConnectedRouter>
-    </Provider>,
-    el,
-  );
+  const render = Component => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <AppContainer>
+            <App />
+          </AppContainer>
+        </ConnectedRouter>
+      </Provider>,
+      el,
+    );
+  };
+
+  render(App);
+  
+  // webpack Hot Module Replacement API
+  if (module.hot) {
+    module.hot.accept('./containers/App', () => {
+      render(App);
+
+      // in all other cases - re-require App manually
+      render(require('./containers/App'));
+    });
+  }
 }

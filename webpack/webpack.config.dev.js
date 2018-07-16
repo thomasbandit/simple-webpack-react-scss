@@ -3,6 +3,8 @@ var webpack = require('webpack');
 var HtmlWebPackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const history = require('connect-history-api-fallback');
+const convert = require('koa-connect');
 
 var config = {
   mode: 'development',
@@ -24,6 +26,7 @@ var config = {
       {
         test: /\.scss$/,
         use: [
+          'css-hot-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
@@ -48,11 +51,10 @@ var config = {
       })
     ]
   },
-  devServer: {
-    historyApiFallback: true,
-  },
-  output: {
-    publicPath: '/'
+  serve: {
+    add: (app, middleware, options) => {
+      app.use(convert(history({})));
+    },
   },
   plugins: [
     new HtmlWebPackPlugin({
