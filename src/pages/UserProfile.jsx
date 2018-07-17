@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadUserProfile } from '../redux/actions/userProfile';
 import { ErrorMessage, Preloader } from '../components';
+import IconRight from '../assets/icons/ic_chevron_right_48px.svg';
 
 class UserProfile extends Component {
   static propTypes = {
@@ -80,7 +81,15 @@ class UserProfile extends Component {
       <div className="container-fluid mt-4 mb-5">
         <div className="row">
           <div className="col-sm-10 offset-sm-1">
-            <h3 className="mb-3">Profile</h3>
+            <IconRight />
+            <h3
+              className="mb-3"
+              style={{
+                display: 'inline-block',
+                verticalAlign: 'bottom',
+              }}
+            >Profile
+            </h3>
 
             <div className="table-responsive">
               <table className="table">

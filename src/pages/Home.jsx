@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadUsers } from '../redux/actions/users';
 import { ErrorMessage, Preloader } from '../components';
+import IconRight from '../assets/icons/ic_chevron_right_48px.svg';
 
 class Home extends Component {
   static propTypes = {
@@ -99,7 +100,15 @@ class Home extends Component {
       <div className="container-fluid mt-4 mb-5">
         <div className="row">
           <div className="col-sm-10 offset-sm-1">
-            <h3 className="mb-3">Users</h3>
+            <IconRight />
+            <h3
+              className="mb-3"
+              style={{
+                display: 'inline-block',
+                verticalAlign: 'bottom',
+              }}
+            >Users
+            </h3>
 
             <div className="table-responsive">
               <table className="table table-hover">
@@ -132,6 +141,16 @@ class Home extends Component {
               >
                 Load more
               </button>
+
+              <br />
+              <img
+                src="/static/img/geocities2.jpg"
+                alt=""
+                style={{
+                  maxHeight: 72,
+                  width: 'auto',
+                }}
+              />
             </div>
           </div>
         </div>

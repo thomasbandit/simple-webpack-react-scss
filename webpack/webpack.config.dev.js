@@ -1,12 +1,14 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebPackPlugin = require('html-webpack-plugin');
-var MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const history = require('connect-history-api-fallback');
 const convert = require('koa-connect');
 
-var config = {
+const config = {
   mode: 'development',
   entry: './src/index.js',
   resolve: {
@@ -33,6 +35,15 @@ var config = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.svg$/,
+        exclude: /node_modules/,
+        loader: 'svg-react-loader',
+        query: {
+          classIdPrefix: '[name]-[hash:8]__',
+          xmlnsTest: /^xmlns.*$/
+        }
+      },
     ]
   },
   devtool: 'source-map',
@@ -57,10 +68,17 @@ var config = {
     },
   },
   plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: 'src/assets/img',
+        to:'static/img'
+      } 
+    ]),
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html'
     }),
+    new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
