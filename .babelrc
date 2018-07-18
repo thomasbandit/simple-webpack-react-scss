@@ -4,6 +4,7 @@
     "react"
   ],
   "plugins": [
+    "dynamic-import-node",
     "transform-class-properties",
     "transform-object-rest-spread",
     "react-hot-loader/babel"
