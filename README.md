@@ -1,8 +1,5 @@
 # TODO
 ### Current
-* Setup bundle splitting/react-loadable
-
-### Second branch - SSR
 * Setup express server that serves rendered React HTML + live reload
 
 ### Third phase - Custom backend API/HOC
@@ -14,3 +11,4 @@
 * Setup per module CSS + hot reload
 * eslint
 * Remove unused bootstrap
+* Setup bundle splitting/react-loadable
