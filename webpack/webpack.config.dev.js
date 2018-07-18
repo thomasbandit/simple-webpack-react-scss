@@ -10,7 +10,17 @@ const convert = require('koa-connect');
 
 const config = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: {
+    client: './src/index.js',
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router-dom',
+      'redux',
+      'redux-thunk',
+    ],
+  },
   resolve: {
     extensions: ['.js', '.jsx']
   },
@@ -72,7 +82,7 @@ const config = {
       {
         from: 'src/assets/img',
         to:'static/img'
-      } 
+      }
     ]),
     new HtmlWebPackPlugin({
       template: './src/index.html',

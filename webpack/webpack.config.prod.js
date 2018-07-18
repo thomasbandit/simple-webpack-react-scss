@@ -2,13 +2,28 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 const config = {
   mode: 'production',
-  entry: './src/index.js',
+  entry: {
+    client: './src/index.js',
+    vendor: [
+      'react',
+      'react-dom',
+      'react-redux',
+      'react-router-dom',
+      'redux',
+      'redux-thunk',
+    ],
+  },
+  output: {
+    path: path.resolve('./dist'),
+    filename: '[name].js',
+  },
   resolve: {
     extensions: ['.js', '.jsx']
   },
@@ -54,6 +69,7 @@ const config = {
   devtool: 'source-map',
   optimization: {
     minimizer: [
+      new OptimizeCSSAssetsPlugin(),
       // we specify a custom UglifyJsPlugin here to get source maps in production
       new UglifyJsPlugin({
         cache: true,
@@ -87,8 +103,8 @@ const config = {
       {
         from: 'src/assets/img',
         to:'static/img'
-      } 
-    ]), 
+      }
+    ]),
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html'
