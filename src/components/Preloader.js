@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Preloader.scss';
+// import styles from './Preloader.scss';
 
 // thx @ http://tobiasahlin.com/spinkit/
 const Preloader = () => (

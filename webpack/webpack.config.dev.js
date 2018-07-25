@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 const history = require('connect-history-api-fallback');
 const convert = require('koa-connect');
 
@@ -31,6 +32,13 @@ const config = {
         loaders: 'html-loader'
       },
       {
+        test: /\.(gif|png|jpe?g)$/i,
+        use: [
+          'file-loader',
+          'image-webpack-loader',
+        ]
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loaders: 'babel-loader',
@@ -47,13 +55,20 @@ const config = {
       },
       {
         test: /\.svg$/,
-        exclude: /node_modules/,
-        loader: 'svg-react-loader',
-        query: {
-          classIdPrefix: '[name]-[hash:8]__',
-          xmlnsTest: /^xmlns.*$/
-        }
+        use: [
+          '@svgr/webpack',
+          'file-loader'
+        ],
       },
+      // {
+      //   test: /\.svg$/,
+      //   exclude: /node_modules/,
+      //   loader: 'svg-react-loader',
+      //   query: {
+      //     classIdPrefix: '[name]-[hash:8]__',
+      //     xmlnsTest: /^xmlns.*$/
+      //   }
+      // },
     ]
   },
   devtool: 'source-map',
@@ -92,7 +107,10 @@ const config = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
-    })
+    }),
+    new WebpackAssetsManifest({
+      // Options go here
+    }),
   ]
 };
 

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadUsers } from '../redux/actions/users';
-import { ErrorMessage, Preloader } from '../components';
+import { ErrorMessage, Page, Preloader } from '../components';
 import IconRight from '../assets/icons/ic_chevron_right_48px.svg';
 
 class Home extends Component {
@@ -97,64 +97,69 @@ class Home extends Component {
     const userComponents = users.map(this.buildUserComponent);
 
     return (
-      <div className="container-fluid mt-4 mb-5">
-        <div className="row">
-          <div className="col-sm-10 offset-sm-1">
-            <IconRight />
-            <h3
-              className="mb-3"
-              style={{
-                display: 'inline-block',
-                verticalAlign: 'bottom',
-              }}
-            >Users
-            </h3>
+      <Page id="home" title="Home" description="This is about really cool stuff.">
+        <div className="container-fluid mt-4 mb-5">
+          <div className="row">
+            <div className="col-sm-10 offset-sm-1">
+              <svg viewBox="48 48 0 0">
+                <use xlinkHref={IconRight} />
+              </svg>
 
-            <div className="table-responsive">
-              <table className="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Avatar</th>
-                    <th scope="col">User</th>
-                    <th scope="col" />
-                  </tr>
-                </thead>
-                <tbody>
-                  {userComponents}
-                </tbody>
-              </table>
-            </div>
-
-            {loading &&
-              <div className="row mt-4 mb-3">
-                <Preloader />
-              </div>
-            }
-
-            <div className="text-center">
-              <button
-                type="button"
-                className="btn btn-light"
-                disabled={loading}
-                onClick={this.handleLoadMoreBtnClick}
-              >
-                Load more
-              </button>
-
-              <br />
-              <img
-                src="/static/img/geocities2.jpg"
-                alt=""
+              <h3
+                className="mb-3"
                 style={{
-                  maxHeight: 72,
-                  width: 'auto',
+                  display: 'inline-block',
+                  verticalAlign: 'bottom',
                 }}
-              />
+              >Users
+              </h3>
+
+              <div className="table-responsive">
+                <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Avatar</th>
+                      <th scope="col">User</th>
+                      <th scope="col" />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {userComponents}
+                  </tbody>
+                </table>
+              </div>
+
+              {loading &&
+                <div className="row mt-4 mb-3">
+                  <Preloader />
+                </div>
+              }
+
+              <div className="text-center">
+                <button
+                  type="button"
+                  className="btn btn-light"
+                  disabled={loading}
+                  onClick={this.handleLoadMoreBtnClick}
+                >
+                  Load more
+                </button>
+
+                <br />
+                <img
+                  src="/static/img/geocities2.jpg"
+                  alt=""
+                  style={{
+                    maxHeight: 72,
+                    width: 'auto',
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Page>
     );
   }
 }
