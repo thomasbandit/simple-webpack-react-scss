@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import SVG from 'react-inlinesvg';
 import { loadUserProfile } from '../../redux/actions/userProfile';
 import { ErrorMessage, Page, Preloader } from '../../components';
 import IconRight from '../../assets/icons/ic_chevron_right_48px.svg';

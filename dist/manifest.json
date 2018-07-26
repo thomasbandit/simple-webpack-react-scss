@@ -1,9 +1,7 @@
 {
   "client.css": "client.css",
   "client.js": "client.js",
-  "client.js.map": "client.js.map",
   "geocities2.jpg": "e638444dbd5afc97b5eff5163cfd3c88.jpg",
   "ic_chevron_right_48px.svg": "c7972995998ee9890162382e562aecc7.svg",
-  "vendor.js": "vendor.js",
-  "vendor.js.map": "vendor.js.map"
+  "vendor.js": "vendor.js"
 }

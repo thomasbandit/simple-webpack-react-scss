@@ -44,6 +44,22 @@ const config = {
         loaders: 'babel-loader',
       },
       {
+        test: /\.css$/,
+        use: [
+          'css-hot-loader',
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[hash:base64:5]'
+            }
+          },
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+      {
         test: /\.scss$/,
         use: [
           'css-hot-loader',
@@ -70,6 +86,9 @@ const config = {
       //   }
       // },
     ]
+  },
+  output: {
+    publicPath: '/'
   },
   devtool: 'source-map',
   optimization: {

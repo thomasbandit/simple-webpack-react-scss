@@ -38,6 +38,8 @@ export default (req, res) => {
     );
     data = data.replace('</body>', scripts.join('') + '</body>');
 
+    console.log("injectHTML", body);
+
     return data;
   };
 
@@ -81,12 +83,8 @@ export default (req, res) => {
         data for that page. We take all that information and compute the appropriate state to send to the user. This is
         then loaded into the correct components and sent as a Promise to be handled below.
       */
-      frontloadServerRender(() => {
-        console.log("hello", htmlData);
-        // console.log("hello 2", req.url, context, store.getState());
-        // console.log('renderToString', renderToString(<Provider store={store}><App /></Provider>));
-
-        return renderToString(
+      frontloadServerRender(() => (
+        renderToString(
           <Loadable.Capture report={m => modules.push(m)}>
             <Provider store={store}>
               <StaticRouter location={req.url} context={context}>
@@ -97,8 +95,7 @@ export default (req, res) => {
             </Provider>
           </Loadable.Capture>
         )
-      }).then(routeMarkup => {
-        console.log('hello?');
+      )).then(routeMarkup => {
         if (context.url) {
           // If context has a url property, then we need to handle a redirection in Redux Router
           res.writeHead(302, {
@@ -136,6 +133,8 @@ export default (req, res) => {
             scripts: extraChunks,
             state: JSON.stringify(store.getState()).replace(/</g, '\\u003c')
           });
+
+          console.log("routeMarkup", routeMarkup);
 
           // We have all the final HTML, let's send it to the user already!
           res.send(html);
