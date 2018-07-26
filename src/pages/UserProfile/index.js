@@ -82,9 +82,7 @@ class UserProfile extends Component {
         <div className="container-fluid mt-4 mb-5">
           <div className="row">
             <div className="col-sm-10 offset-sm-1">
-              <svg>
-                <use xlinkHref={IconRight} />
-              </svg>
+              <SVG src={IconRight} />
               <h3
                 className="mb-3"
                 style={{

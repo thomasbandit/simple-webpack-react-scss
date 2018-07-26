@@ -13,9 +13,9 @@ function Loading({ error }) {
 }
 
 const About = Loadable({
-  loader: () => import(/* webpackChunkName: "aboutPageChunk" */ './pages/About'),
+  loader: () => import(/* webpackChunkName: "aboutPageChunk" */ './pages/About/About'),
   loading: Loading,
-  modules: ['./pages/About']
+  modules: ['./pages/About/About']
 });
 
 const UserProfile = Loadable({
