@@ -1,5 +1,4 @@
 import React from 'react';
-import SVG from 'react-inlinesvg';
 import classNames from 'classnames';
 import { Page } from '../../components';
 import styles from './About.css';
@@ -10,7 +9,7 @@ const About = () => (
     <div className={classNames('container-fluid mt-4 mb-5', styles.container)}>
       <div className="row">
         <div className="col-sm-10 offset-sm-1">
-          <SVG src={IconRight} />
+          <IconRight />
           <h3
             className="mb-3"
             style={{

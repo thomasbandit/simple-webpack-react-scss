@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import SVG from 'react-inlinesvg';
 import { loadUsers } from '../redux/actions/users';
 import { ErrorMessage, Page, Preloader } from '../components';
 import IconRight from '../assets/icons/ic_chevron_right_48px.svg';
@@ -102,7 +101,7 @@ class Home extends Component {
         <div className="container-fluid mt-4 mb-5">
           <div className="row">
             <div className="col-sm-10 offset-sm-1">
-              <SVG src={IconRight} />
+              <IconRight />
               <h3
                 className="mb-3"
                 style={{

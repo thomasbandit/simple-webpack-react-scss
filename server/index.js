@@ -41,6 +41,7 @@ require('babel-register')({
         "extensions": [".css"],
       },
     ],
+    'inline-react-svg',
     'react-loadable/babel'
   ]
 });
