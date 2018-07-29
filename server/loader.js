@@ -38,8 +38,6 @@ export default (req, res) => {
     );
     data = data.replace('</body>', scripts.join('') + '</body>');
 
-    console.log("injectHTML", body);
-
     return data;
   };
 
@@ -133,8 +131,6 @@ export default (req, res) => {
             scripts: extraChunks,
             state: JSON.stringify(store.getState()).replace(/</g, '\\u003c')
           });
-
-          console.log("routeMarkup", routeMarkup);
 
           // We have all the final HTML, let's send it to the user already!
           res.send(html);

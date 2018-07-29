@@ -35,7 +35,6 @@ if (el) {
       hydrate(Application, el);
     });
   } else if (module.hot) {
-    console.log("hot!");
     const renderHot = Component => {
       render(
         <Provider store={store}>
@@ -63,30 +62,4 @@ if (el) {
     // If we're not running on the server, just render like normal
     render(Application, el);
   }
-
-
-  // const render = Component => {
-  //   ReactDOM.render(
-  //     <Provider store={store}>
-  //       <ConnectedRouter history={history}>
-  //         <AppContainer>
-  //           <App />
-  //         </AppContainer>
-  //       </ConnectedRouter>
-  //     </Provider>,
-  //     el,
-  //   );
-  // };
-
-  // render(App);
-
-  // // webpack Hot Module Replacement API
-  // if (module.hot) {
-  //   module.hot.accept('./containers/App', () => {
-  //     render(App);
-
-  //     // in all other cases - re-require App manually
-  //     render(require('./containers/App'));
-  //   });
-  // }
 }
