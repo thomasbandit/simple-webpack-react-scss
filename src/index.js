@@ -5,17 +5,13 @@ import Loadable from 'react-loadable';
 import { Frontload } from 'react-frontload';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-// import { createBrowserHistory } from 'history';
 import configureStore from './redux/configureStore';
 import App from './containers/App';
 
 const el = document.getElementById('app');
-// const history = createBrowserHistory();
 const { store, history } = configureStore();
 
-/* eslint-disable */
 if (el) {
-
   // Running locally, we should run on a <ConnectedRouter /> rather than on a <StaticRouter /> like on the server
   // Let's also let React Frontload explicitly know we're not rendering on the server here
   const Application = (
@@ -35,7 +31,7 @@ if (el) {
       hydrate(Application, el);
     });
   } else if (module.hot) {
-    const renderHot = Component => {
+    const renderHot = Component =>
       render(
         <Provider store={store}>
           <ConnectedRouter history={history}>
@@ -48,7 +44,6 @@ if (el) {
         </Provider>,
         el,
       );
-    };
 
     renderHot(Application);
 
@@ -56,6 +51,7 @@ if (el) {
       renderHot(Application);
 
       // in all other cases - re-require App manually
+      // eslint-disable-next-line global-require
       renderHot(require('./containers/App'));
     });
   } else {

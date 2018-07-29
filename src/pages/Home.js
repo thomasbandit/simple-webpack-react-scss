@@ -8,7 +8,7 @@ import { loadUsers } from '../redux/actions/users';
 import { ErrorMessage, Page, Preloader } from '../components';
 import IconRight from '../assets/icons/ic_chevron_right_48px.svg';
 
-const frontload = async props => await props.loadUsers();
+const frontload = async props => props.loadUsers();
 
 class Home extends Component {
   static propTypes = {
@@ -176,7 +176,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(frontloadConnect(frontload, {
-    onMount: true,
-    onUpdate: false,
-  })(Home)
-);
+  onMount: true,
+  onUpdate: false,
+})(Home));

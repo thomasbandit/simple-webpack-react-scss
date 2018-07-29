@@ -2,7 +2,7 @@ import RestApiClient from '../utils/RestApiClient';
 
 export default () => {
   const client = new RestApiClient({
-    baseURL: 'https://api.github.com/'
+    baseURL: 'https://api.github.com/',
   });
 
   return {
@@ -13,7 +13,7 @@ export default () => {
 
     getAll: (lastId = null) => client.request({
       method: 'GET',
-      url: lastId? `/users?since=${lastId}` : '/users',
+      url: lastId ? `/users?since=${lastId}` : '/users',
     }),
-  }
+  };
 };

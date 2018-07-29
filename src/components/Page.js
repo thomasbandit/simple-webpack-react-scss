@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import Helmet from 'react-helmet';
 import logo from '../assets/img/geocities2.jpg';
@@ -18,6 +19,20 @@ const defaultTwitter = '@thomasbandit';
 const defaultSep = ' | ';
 
 class Page extends Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    className: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      hash: PropTypes.string.isRequired,
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  };
+
+  static defaultProps = {
+    className: '',
+  };
+
   getMetaTags(
     {
       title,
@@ -29,9 +44,9 @@ class Page extends Component {
       published,
       updated,
       category,
-      tags
+      tags,
     },
-    pathname
+    pathname,
   ) {
     const theTitle = title
       ? (title + defaultSep + defaultTitle).substring(0, 60)
@@ -58,7 +73,7 @@ class Page extends Component {
       { property: 'og:image', content: theImage },
       { property: 'og:description', content: theDescription },
       { property: 'og:site_name', content: defaultTitle },
-      { property: 'fb:app_id', content: FACEBOOK_APP_ID }
+      { property: 'fb:app_id', content: FACEBOOK_APP_ID },
     ];
 
     if (noCrawl) {
@@ -82,7 +97,13 @@ class Page extends Component {
   }
 
   render() {
-    const { children, id, className, ...rest } = this.props;
+    const {
+      children,
+      id,
+      className,
+      location,
+      ...rest
+    } = this.props;
 
     return (
       <div id={id} className={className}>
@@ -90,7 +111,7 @@ class Page extends Component {
           htmlAttributes={{
             lang: 'en',
             itemscope: undefined,
-            itemtype: `http://schema.org/${rest.schema || 'WebPage'}`
+            itemtype: `http://schema.org/${rest.schema || 'WebPage'}`,
           }}
           title={
             rest.title ? rest.title + defaultSep + defaultTitle : defaultTitle
@@ -98,8 +119,8 @@ class Page extends Component {
           link={[
             {
               rel: 'canonical',
-              href: SITE_URL + this.props.location.pathname
-            }
+              href: SITE_URL + location.pathname,
+            },
           ]}
           meta={this.getMetaTags(rest, this.props.location.pathname)}
         />

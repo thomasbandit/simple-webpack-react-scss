@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-serve --config webpack/webpack.config.dev.js",
     "build": "webpack --config webpack/webpack.config.prod.js",
-    "lint": "eslint src/index.js",
+    "lint": "eslint src/**/*.js",
     "serve": "NODE_ENV=production node ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

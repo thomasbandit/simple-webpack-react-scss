@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { Home, NoMatch } from './pages';
 
-/* eslint-disable */
 function Loading({ error }) {
   console.log("loading error", error)
   if (error) {

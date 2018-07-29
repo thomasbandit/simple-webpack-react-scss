@@ -13,6 +13,7 @@
       "specialLink": [ "to", "hrefLeft", "hrefRight" ],
       "aspects": [ "noHref", "invalidHref", "preferButton" ]
     }],
+    "react/jsx-filename-extension": 0
   },
   "env": {
     "browser": true,

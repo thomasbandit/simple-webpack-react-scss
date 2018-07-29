@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-// import styles from './Navigation.scss';
 
 class Navigation extends Component {
-  // static propTypes = {
-  //   pathname: PropTypes.string.isRequired,
-  // };
+  static propTypes = {
+    pathname: PropTypes.string.isRequired,
+  };
 
   constructor(props) {
     super(props);
@@ -18,9 +17,9 @@ class Navigation extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // if (this.props.pathname !== nextProps.pathname) {
-    //   this.setState({ menuExpanded: false });
-    // }
+    if (this.props.pathname !== nextProps.pathname) {
+      this.setState({ menuExpanded: false });
+    }
   }
 
   handleButtonClick() {
@@ -32,7 +31,7 @@ class Navigation extends Component {
   }
 
   render() {
-    // const { pathname } = this.props;
+    const { pathname } = this.props;
 
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
