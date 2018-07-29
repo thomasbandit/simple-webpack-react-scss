@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as constants from '../constants/users';
-// import fetchResultHandling from '../../utils/fetchResultHandling';
+import service from '../../services/userProfile';
 
 // eslint-disable-next-line import/prefer-default-export
 export function loadUsers() {
@@ -15,9 +15,8 @@ export function loadUsers() {
 
       dispatch({ type: constants.LOAD_USERS });
 
-      const apiUrl = !lastId ? 'https://api.github.com/users' : `https://api.github.com/users?since=${lastId}`;
-
-      axios.get(apiUrl)
+      // axios.get(apiUrl)
+      service().getAll(lastId)
         .then(function (response) {
           // handle success
           console.log(response);
@@ -32,16 +31,5 @@ export function loadUsers() {
           console.log(error);
           dispatch({ type: constants.LOAD_USERS_FAIL })
         });
-
-      // return fetch(apiUrl)
-      //   .then(fetchResultHandling.checkStatus)
-      //   .then(fetchResultHandling.parseResponse)
-      //   .then((res) => {
-      //     dispatch({
-      //       type: constants.LOAD_USERS_SUCCESS,
-      //       data: res,
-      //     });
-      //   })
-      //   .catch(err => dispatch({ type: constants.LOAD_USERS_FAIL }));
     });
 }

@@ -33,8 +33,6 @@ require('babel-register')({
   plugins: [
     'syntax-dynamic-import',
     'dynamic-import-node',
-    // 'transform-class-properties',
-    // 'transform-object-rest-spread',
     [
       'css-modules-transform', {
         'generateScopedName': '[hash:base64:5]',

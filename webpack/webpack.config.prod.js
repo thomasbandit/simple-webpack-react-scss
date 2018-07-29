@@ -11,7 +11,10 @@ const WebpackAssetsManifest = require('webpack-assets-manifest');
 const config = {
   mode: 'production',
   entry: {
-    client: './src/index.js',
+    client: [
+      'babel-polyfill',
+      './src/index.js'
+    ],
     vendor: [
       'react',
       'react-dom',
