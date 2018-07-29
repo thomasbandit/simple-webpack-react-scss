@@ -37,8 +37,8 @@ require('babel-register')({
     // 'transform-object-rest-spread',
     [
       'css-modules-transform', {
-        "generateScopedName": "[hash:base64:5]",
-        "extensions": [".css"],
+        'generateScopedName': '[hash:base64:5]',
+        'extensions': ['.css'],
       },
     ],
     'inline-react-svg',

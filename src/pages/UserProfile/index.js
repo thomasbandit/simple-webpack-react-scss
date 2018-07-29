@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { frontloadConnect } from 'react-frontload';
 import { loadUserProfile } from '../../redux/actions/userProfile';
 import { ErrorMessage, Page, Preloader } from '../../components';
 import IconRight from '../../assets/icons/ic_chevron_right_48px.svg';
+
+const frontload = async props => await props.loadUserProfile(props.match.params.username);
+// await props.getCurrentProfile(+props.match.params.id);
 
 class UserProfile extends Component {
   static propTypes = {
@@ -43,14 +47,14 @@ class UserProfile extends Component {
     profile: {},
   }
 
-  componentDidMount() {
-    const {
-      loadUserProfile,
-      match: { params },
-    } = this.props;
+  // componentDidMount() {
+  //   const {
+  //     loadUserProfile,
+  //     match: { params },
+  //   } = this.props;
 
-    loadUserProfile(params.username);
-  }
+  //   // loadUserProfile(params.username);
+  // }
 
   renderLoading() {
     return (
@@ -69,13 +73,13 @@ class UserProfile extends Component {
       profile,
     } = this.props;
 
-    if (loading) {
-      return this.renderLoading();
-    }
+    // if (loading) {
+    //   return this.renderLoading();
+    // }
 
-    if (error) {
-      return <ErrorMessage />;
-    }
+    // if (error) {
+    //   return <ErrorMessage />;
+    // }
 
     return (
       <Page id="userProfile" title="User Profile" description="This is about really cool stuff.">
@@ -160,4 +164,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   loadUserProfile,
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  frontloadConnect(frontload, {
+    onMount: true,
+    onUpdate: false,
+  })(UserProfile)
+);

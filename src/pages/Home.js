@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { frontloadConnect } from 'react-frontload';
 import { loadUsers } from '../redux/actions/users';
 import { ErrorMessage, Page, Preloader } from '../components';
 import IconRight from '../assets/icons/ic_chevron_right_48px.svg';
+
+const frontload = async props => await props.loadUsers();
 
 class Home extends Component {
   static propTypes = {
@@ -41,16 +44,16 @@ class Home extends Component {
     this.handleLoadMoreBtnClick = this.handleLoadMoreBtnClick.bind(this);
   }
 
-  componentDidMount() {
-    const {
-      loadUsers,
-      users,
-    } = this.props;
+  // componentDidMount() {
+  //   const {
+  //     loadUsers,
+  //     users,
+  //   } = this.props;
 
-    if (!users.length) {
-      loadUsers();
-    }
-  }
+  //   if (!users.length) {
+  //     loadUsers();
+  //   }
+  // }
 
   handleLoadMoreBtnClick() {
     const { loadUsers } = this.props;
@@ -172,4 +175,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   loadUsers,
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(frontloadConnect(frontload, {
+    onMount: true,
+    onUpdate: false,
+  })(Home)
+);

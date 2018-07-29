@@ -7,6 +7,10 @@
     "dynamic-import-node",
     "transform-class-properties",
     "transform-object-rest-spread",
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }],
     "react-css-modules",
     "inline-react-svg",
     "react-hot-loader/babel"

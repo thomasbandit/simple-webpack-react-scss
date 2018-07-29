@@ -5,8 +5,9 @@ import { Home, NoMatch } from './pages';
 
 /* eslint-disable */
 function Loading({ error }) {
+  console.log("loading error", error)
   if (error) {
-    return 'Oh nooess!';
+    return 'FUCK!';
   }
 
   return <h3>Loading...</h3>;
