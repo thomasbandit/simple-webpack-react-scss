@@ -16,7 +16,7 @@ const About = () => (
               display: 'inline-block',
               verticalAlign: 'bottom',
             }}
-          >About
+          >About123
           </h3>
 
           <p>I am Thomas Mills, a web developer based in Amsterdam, the Netherlands.</p>

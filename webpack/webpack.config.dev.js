@@ -47,7 +47,7 @@ const config = {
         test: /\.css$/,
         use: [
           'css-hot-loader',
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -63,7 +63,7 @@ const config = {
         test: /\.scss$/,
         use: [
           'css-hot-loader',
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           'postcss-loader',
           'sass-loader',

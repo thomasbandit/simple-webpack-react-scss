@@ -34,6 +34,31 @@ if (el) {
     Loadable.preloadReady().then(() => {
       hydrate(Application, el);
     });
+  } else if (module.hot) {
+    console.log("hot!");
+    const renderHot = Component => {
+      render(
+        <Provider store={store}>
+          <ConnectedRouter history={history}>
+            <AppContainer>
+              <Frontload noServerRender>
+                <App />
+              </Frontload>
+            </AppContainer>
+          </ConnectedRouter>
+        </Provider>,
+        el,
+      );
+    };
+
+    renderHot(Application);
+
+    module.hot.accept('./containers/App', () => {
+      renderHot(Application);
+
+      // in all other cases - re-require App manually
+      renderHot(require('./containers/App'));
+    });
   } else {
     // If we're not running on the server, just render like normal
     render(Application, el);
