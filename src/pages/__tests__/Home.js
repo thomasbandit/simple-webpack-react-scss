@@ -1,18 +1,12 @@
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { configure, shallow } from 'enzyme';
-import ReactSixteenAdapter from 'enzyme-adapter-react-16';
-import Home from '../Home';
+import { Home } from '../Home';
+import { mountWrap, shallowWrap } from '../../../tests/helpers/contextWrapper';
 import {
   ErrorMessage,
   Preloader,
 } from '../../components';
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-
-configure({ adapter: new ReactSixteenAdapter() });
 
 describe('Home Component', () => {
   it('displays the preloader component if the loading prop is true', () => {
@@ -24,10 +18,10 @@ describe('Home Component', () => {
       },
     };
 
-    // As we're using redux connect remember to dive()
-    const home = shallow(<Home store={mockStore(initialState)} />).dive(); // eslint-disable-line react/jsx-filename-extension
+    const wrappedShallow = () => shallowWrap(<Home error={false} loading={true} users={[]} loadUsers={jest.fn()} />);
+    const wrapper = wrappedShallow();
 
-    expect(home.find(Preloader).length).toBe(1);
+    expect(wrapper.find(Preloader).length).toBe(1);
   });
 
   it('displays the error component if the error prop is true', () => {
@@ -39,8 +33,8 @@ describe('Home Component', () => {
       },
     };
 
-    const home = shallow(<Home store={mockStore(initialState)} />).dive(); // eslint-disable-line react/jsx-filename-extension
-
-    expect(home.find(ErrorMessage).length).toBe(1);
+    const wrappedShallow = () => shallowWrap(<Home error={true} loading={false} users={[]} loadUsers={jest.fn()} />);
+    const wrapper = wrappedShallow();
+    expect(wrapper.find(ErrorMessage).length).toBe(1);
   });
 });

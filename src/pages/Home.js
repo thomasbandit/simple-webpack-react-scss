@@ -10,7 +10,7 @@ import IconRight from '../assets/icons/ic_chevron_right_48px.svg';
 
 const frontload = async props => props.loadUsers();
 
-class Home extends Component {
+export class Home extends Component {
   static propTypes = {
     error: PropTypes.bool.isRequired,
     loading: PropTypes.bool.isRequired,
